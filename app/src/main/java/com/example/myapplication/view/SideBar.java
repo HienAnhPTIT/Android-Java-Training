@@ -29,7 +29,7 @@ public class SideBar extends View {
 
     public SideBar(Context context, AttributeSet attrs) {
         super(context, attrs);
-        setAlpha(0f); // Initially invisible
+        // Removed setAlpha(0f) to make it always visible
     }
 
     public SideBar(Context context) {
@@ -46,12 +46,13 @@ public class SideBar extends View {
         for (int i = 0; i < b.length; i++) {
             paint.setAntiAlias(true);
             paint.setTypeface(Typeface.DEFAULT_BOLD);
-            paint.setColor(Color.WHITE);
+            paint.setColor(Color.BLACK); // Use Black or dark grey for better visibility on light background
             
             float textSize;
             int alpha;
             
             if (choose != -1) {
+                paint.setColor(Color.parseColor("#3399ff")); // Blue when selected
                 int distance = Math.abs(i - choose);
                 switch (distance) {
                     case 0:
@@ -72,15 +73,15 @@ public class SideBar extends View {
                         break;
                 }
             } else {
-                textSize = 14f * density;
-                alpha = 255;
+                textSize = 12f * density;
+                alpha = 150; // Semi-transparent
             }
 
             paint.setTextSize(textSize);
             paint.setAlpha(alpha);
             
             float xPos = width / 2f - paint.measureText(b[i]) / 2f;
-            float yPos = singleHeight * (i + 1); // Draw in center of singleHeight or just simple offset
+            float yPos = singleHeight * (i + 1);
             canvas.drawText(b[i], xPos, yPos, paint);
         }
     }
@@ -96,7 +97,6 @@ public class SideBar extends View {
         switch (action) {
             case MotionEvent.ACTION_UP:
                 setBackgroundColor(Color.TRANSPARENT);
-                setAlpha(0f); // Hide when released
                 choose = -1;
                 invalidate();
                 if (mTextDialog != null) {
@@ -105,8 +105,7 @@ public class SideBar extends View {
                 break;
 
             case MotionEvent.ACTION_DOWN:
-                setBackgroundColor(Color.parseColor("#40000000")); // Light dark background to see white text
-                setAlpha(1f); // Show when touched
+                setBackgroundColor(Color.parseColor("#40000000"));
             default:
                 if (oldChoose != c) {
                     if (c >= 0 && c < b.length) {

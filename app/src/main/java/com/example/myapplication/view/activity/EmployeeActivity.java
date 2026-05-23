@@ -36,6 +36,8 @@ public class EmployeeActivity extends AppCompatActivity {
     private EmployeeViewModel mViewModel;
     private SideBar mSideBar;
     private TextView mTextDialog;
+    private boolean isGridLayout = false;
+    private android.widget.ImageButton btnToggleLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,9 @@ public class EmployeeActivity extends AppCompatActivity {
         mProgressBar = findViewById(R.id.progressBar);
         mSideBar = findViewById(R.id.sidrbar);
         mTextDialog = findViewById(R.id.dialog);
+        btnToggleLayout = findViewById(R.id.btn_toggle_layout);
+
+        btnToggleLayout.setOnClickListener(v -> toggleLayout());
 
         setAdapter();
 
@@ -101,8 +106,7 @@ public class EmployeeActivity extends AppCompatActivity {
     }
 
     private void setAdapter() {
-
-        mRecyclerView.setLayoutManager( new LinearLayoutManager(this));
+        updateLayoutManager();
 
         mAdapter = new EmployeeAdapter(EmployeeActivity.this, mList, new OnItemClickListener() {
 
@@ -139,5 +143,30 @@ public class EmployeeActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+    }
+
+    private void toggleLayout() {
+        isGridLayout = !isGridLayout;
+        updateLayoutManager();
+        
+        float density = getResources().getDisplayMetrics().density;
+        if (isGridLayout) {
+            btnToggleLayout.setImageResource(android.R.drawable.ic_menu_sort_by_size);
+            int p = (int) (8 * density); // Standard padding
+            btnToggleLayout.setPadding(p, p, p, p);
+        } else {
+            btnToggleLayout.setImageResource(android.R.drawable.ic_dialog_dialer);
+            int p = (int) (12 * density); // More padding for grid icon to look smaller
+            btnToggleLayout.setPadding(p, p, p, p);
+        }
+        mAdapter.setGridLayout(isGridLayout);
+    }
+
+    private void updateLayoutManager() {
+        if (isGridLayout) {
+            mRecyclerView.setLayoutManager(new androidx.recyclerview.widget.GridLayoutManager(this, 3));
+        } else {
+            mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        }
     }
 }

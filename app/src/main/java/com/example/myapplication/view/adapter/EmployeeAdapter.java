@@ -21,11 +21,17 @@ public class EmployeeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private Context mContext;
     private List<Employee> mList;
     private OnItemClickListener mOnItemClickListener;
+    private boolean isGridLayout = false;
 
     public EmployeeAdapter(Context context, List<Employee> list, OnItemClickListener onItemClickListener){
         mContext = context;
         mList = list;
         mOnItemClickListener = onItemClickListener;
+    }
+
+    public void setGridLayout(boolean isGrid) {
+        this.isGridLayout = isGrid;
+        notifyDataSetChanged();
     }
 
     public void setList(List<Employee> list){
@@ -76,6 +82,28 @@ public class EmployeeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         stepViewHolder.mTxtName.setText(emp.getName());
         stepViewHolder.mTxtPart.setText(emp.getDepartment());
         stepViewHolder.mTxtPos.setText(emp.getPosition());
+
+        if (isGridLayout) {
+            stepViewHolder.mTxtNameTitle.setVisibility(View.GONE);
+            stepViewHolder.mTxtPartTitle.setVisibility(View.GONE);
+            stepViewHolder.mTxtPosTitle.setVisibility(View.GONE);
+            stepViewHolder.mImgDetail.setVisibility(View.GONE);
+            
+            // Centering text for grid
+            stepViewHolder.mTxtName.setGravity(android.view.Gravity.CENTER);
+            stepViewHolder.mTxtPart.setGravity(android.view.Gravity.CENTER);
+            stepViewHolder.mTxtPos.setGravity(android.view.Gravity.CENTER);
+        } else {
+            stepViewHolder.mTxtNameTitle.setVisibility(View.VISIBLE);
+            stepViewHolder.mTxtPartTitle.setVisibility(View.VISIBLE);
+            stepViewHolder.mTxtPosTitle.setVisibility(View.VISIBLE);
+            stepViewHolder.mImgDetail.setVisibility(View.VISIBLE);
+
+            stepViewHolder.mTxtName.setGravity(android.view.Gravity.START);
+            stepViewHolder.mTxtPart.setGravity(android.view.Gravity.START);
+            stepViewHolder.mTxtPos.setGravity(android.view.Gravity.START);
+        }
+
         stepViewHolder.mLayoutItem.setOnClickListener(v -> {
             int pos = stepViewHolder.getBindingAdapterPosition();
             mOnItemClickListener.clickItem(pos);
@@ -93,6 +121,8 @@ public class EmployeeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
     static class StepViewHolder extends RecyclerView.ViewHolder {
         TextView mTxtName, mTxtPart, mTxtPos;
+        TextView mTxtNameTitle, mTxtPartTitle, mTxtPosTitle;
+        android.widget.ImageView mImgDetail;
         ConstraintLayout mLayoutItem;
 
         public StepViewHolder(@NonNull View itemView) {
@@ -101,6 +131,10 @@ public class EmployeeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             mTxtName = itemView.findViewById(R.id.txt_name);
             mTxtPart = itemView.findViewById(R.id.txt_department);
             mTxtPos = itemView.findViewById(R.id.txt_position);
+            mTxtNameTitle = itemView.findViewById(R.id.txt_name_title);
+            mTxtPartTitle = itemView.findViewById(R.id.txt_part_title);
+            mTxtPosTitle = itemView.findViewById(R.id.txt_pos_title);
+            mImgDetail = itemView.findViewById(R.id.img_detail);
         }
     }
 }
