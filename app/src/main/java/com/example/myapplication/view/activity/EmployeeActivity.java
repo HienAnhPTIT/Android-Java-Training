@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +17,7 @@ import com.example.myapplication.R;
 import com.example.myapplication.controller.OnItemClickListener;
 import com.example.myapplication.db.entity.EmployeeMapper;
 import com.example.myapplication.model.Employee;
+import com.example.myapplication.view.SideBar;
 import com.example.myapplication.view.adapter.EmployeeAdapter;
 import com.example.myapplication.view.fragment.AddEmpFragment;
 import com.example.myapplication.viewmodel.EmployeeViewModel;
@@ -32,6 +34,8 @@ public class EmployeeActivity extends AppCompatActivity {
     private FloatingActionButton mFabAdd;
     private ProgressBar mProgressBar;
     private EmployeeViewModel mViewModel;
+    private SideBar mSideBar;
+    private TextView mTextDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +45,20 @@ public class EmployeeActivity extends AppCompatActivity {
         mRecyclerView = findViewById(R.id.recycler_view);
         mFabAdd = findViewById(R.id.fab);
         mProgressBar = findViewById(R.id.progressBar);
+        mSideBar = findViewById(R.id.sidrbar);
+        mTextDialog = findViewById(R.id.dialog);
 
         setAdapter();
+
+        mSideBar.setTextView(mTextDialog);
+        mSideBar.setOnTouchingLetterChangedListener(s -> {
+            if (mAdapter != null) {
+                int position = mAdapter.getPositionForSection(s.charAt(0));
+                if (position != -1) {
+                    ((LinearLayoutManager) mRecyclerView.getLayoutManager()).scrollToPositionWithOffset(position, 0);
+                }
+            }
+        });
 
         getSupportFragmentManager().addOnBackStackChangedListener(() -> {
 

@@ -47,6 +47,19 @@ public class EmployeeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         notifyItemInserted(mList.size());
     }
 
+    public int getPositionForSection(char section) {
+        for (int i = 0; i < getItemCount(); i++) {
+            String name = mList.get(i).getName();
+            if (name != null && !name.isEmpty()) {
+                char firstChar = name.toUpperCase().charAt(0);
+                if (firstChar == section) {
+                    return i;
+                }
+            }
+        }
+        return -1;
+    }
+
 
     @NonNull
     @Override

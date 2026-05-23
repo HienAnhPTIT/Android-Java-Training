@@ -147,7 +147,7 @@
             android:id="@+id/btn_save"
             android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:text="Update Employee"
+            android:text="Save"
             android:layout_marginBottom="12dp"
             android:visibility="gone"
             android:backgroundTint="#4CAF50"/>
@@ -156,7 +156,7 @@
             android:id="@+id/btn_delete"
             android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:text="Delete Employee"
+            android:text="Cancel"
             android:backgroundTint="#F44336"/>
 
     </LinearLayout>
