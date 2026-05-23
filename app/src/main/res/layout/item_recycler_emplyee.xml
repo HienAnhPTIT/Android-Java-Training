@@ -4,27 +4,29 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
-    app:cardCornerRadius="5dp"
-    app:cardElevation="4dp"
-    app:cardUseCompatPadding="false">
+    android:layout_marginHorizontal="12dp"
+    android:layout_marginVertical="6dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="0dp"
+    app:strokeWidth="1dp"
+    app:strokeColor="@color/surface_variant"
+    app:cardBackgroundColor="@color/white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="80dp"
-        android:padding="8dp">
+        android:padding="16dp">
 
-        <!-- Name Group -->
         <TextView
             android:id="@+id/txt_name_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Name: "
-            android:textColor="@color/black"
-            android:textSize="13sp"
-            android:textStyle="bold"
+            android:text="Name"
+            android:textColor="@color/primary"
+            android:textSize="11sp"
+            android:textAllCaps="true"
+            android:letterSpacing="0.05"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,24 +36,23 @@
             android:layout_height="wrap_content"
             android:text="John Cena"
             android:textColor="@color/black"
-            android:textSize="14sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             android:maxLines="1"
             android:ellipsize="end"
             app:layout_constraintEnd_toStartOf="@+id/img_detail"
-            app:layout_constraintStart_toEndOf="@+id/txt_name_title"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_name_title" />
 
-        <!-- Department Group -->
         <TextView
             android:id="@+id/txt_part_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="Dept: "
-            android:textColor="@color/black"
-            android:textSize="12sp"
-            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:text="Dept"
+            android:textColor="@color/outline"
+            android:textSize="11sp"
+            android:textAllCaps="true"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txt_name" />
 
@@ -60,45 +61,52 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Engineering"
-            android:textColor="#666666"
-            android:textSize="12sp"
+            android:textColor="@color/grey_dark"
+            android:textSize="13sp"
             android:maxLines="1"
             android:ellipsize="end"
-            app:layout_constraintEnd_toStartOf="@+id/img_detail"
-            app:layout_constraintStart_toEndOf="@+id/txt_part_title"
-            app:layout_constraintTop_toTopOf="@+id/txt_part_title" />
+            app:layout_constraintEnd_toStartOf="@+id/guideline_vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_part_title" />
 
-        <!-- Position Group -->
         <TextView
             android:id="@+id/txt_pos_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:text="Pos: "
-            android:textColor="@color/black"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_department" />
+            android:layout_marginTop="8dp"
+            android:text="Position"
+            android:textColor="@color/outline"
+            android:textSize="11sp"
+            android:textAllCaps="true"
+            app:layout_constraintStart_toEndOf="@id/guideline_vertical"
+            app:layout_constraintTop_toBottomOf="@+id/txt_name" />
 
         <TextView
             android:id="@+id/txt_position"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Developer"
-            android:textColor="#666666"
-            android:textSize="12sp"
+            android:textColor="@color/grey_dark"
+            android:textSize="13sp"
             android:maxLines="1"
             android:ellipsize="end"
             app:layout_constraintEnd_toStartOf="@+id/img_detail"
-            app:layout_constraintStart_toEndOf="@+id/txt_pos_title"
-            app:layout_constraintTop_toTopOf="@+id/txt_pos_title" />
+            app:layout_constraintStart_toEndOf="@id/guideline_vertical"
+            app:layout_constraintTop_toBottomOf="@+id/txt_pos_title" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
 
         <ImageView
             android:id="@+id/img_detail"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:src="@drawable/arrow_forward"
+            app:tint="@color/outline"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />

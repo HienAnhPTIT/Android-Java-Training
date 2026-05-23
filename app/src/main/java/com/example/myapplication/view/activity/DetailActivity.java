@@ -111,14 +111,16 @@ public class DetailActivity extends AppCompatActivity {
             btnEdit.setVisibility(View.GONE);
             btnSave.setVisibility(View.VISIBLE);
             btnDelete.setText("Cancel");
-            btnDelete.setBackgroundTintList(android.content.res.ColorStateList.valueOf(android.graphics.Color.GRAY));
+            btnDelete.setBackgroundTintList(android.content.res.ColorStateList.valueOf(android.graphics.Color.parseColor("#79747E")));
+            btnDelete.setTextColor(android.graphics.Color.WHITE);
         } else {
             layoutViewMode.setVisibility(View.VISIBLE);
             layoutEditMode.setVisibility(View.GONE);
             btnEdit.setVisibility(View.VISIBLE);
             btnSave.setVisibility(View.GONE);
             btnDelete.setText("Delete Employee");
-            btnDelete.setBackgroundTintList(android.content.res.ColorStateList.valueOf(android.graphics.Color.parseColor("#F44336")));
+            btnDelete.setBackgroundTintList(android.content.res.ColorStateList.valueOf(android.graphics.Color.parseColor("#79747E")));
+            btnDelete.setTextColor(android.graphics.Color.WHITE);
         }
     }
 

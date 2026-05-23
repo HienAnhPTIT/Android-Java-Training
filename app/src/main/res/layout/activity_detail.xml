@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    android:background="@color/color_bg">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,149 +15,218 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Employee Profile"
-            android:textSize="24sp"
+            android:textSize="28sp"
             android:textStyle="bold"
             android:textColor="@color/black"
             android:layout_marginBottom="32dp"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_gravity="start"/>
 
-        <!-- View Mode Container -->
-        <LinearLayout
-            android:id="@+id/layout_view_mode"
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="visible">
+            app:cardCornerRadius="24dp"
+            app:cardElevation="0dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="@color/surface_variant"
+            app:cardBackgroundColor="@color/white"
+            android:layout_marginBottom="24dp">
 
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Full Name" android:textColor="#888888" android:textSize="12sp"/>
-            <TextView android:id="@+id/tv_name" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="John Doe" android:textColor="@color/black" android:textSize="18sp" android:layout_marginBottom="16dp" android:paddingTop="4dp"/>
-
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Department" android:textColor="#888888" android:textSize="12sp"/>
-            <TextView android:id="@+id/tv_department" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Engineering" android:textColor="@color/black" android:textSize="18sp" android:layout_marginBottom="16dp" android:paddingTop="4dp"/>
-
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Position" android:textColor="#888888" android:textSize="12sp"/>
-            <TextView android:id="@+id/tv_position" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Developer" android:textColor="@color/black" android:textSize="18sp" android:layout_marginBottom="16dp" android:paddingTop="4dp"/>
-
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Salary" android:textColor="#888888" android:textSize="12sp"/>
-            <TextView android:id="@+id/tv_salary" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="50,000" android:textColor="@color/black" android:textSize="18sp" android:layout_marginBottom="16dp" android:paddingTop="4dp"/>
-
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Email" android:textColor="#888888" android:textSize="12sp"/>
-            <TextView android:id="@+id/tv_email" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="john@example.com" android:textColor="@color/black" android:textSize="18sp" android:layout_marginBottom="16dp" android:paddingTop="4dp"/>
-
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Phone" android:textColor="#888888" android:textSize="12sp"/>
-            <TextView android:id="@+id/tv_phone" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="123456789" android:textColor="@color/black" android:textSize="18sp" android:layout_marginBottom="16dp" android:paddingTop="4dp"/>
-        </LinearLayout>
-
-        <!-- Edit Mode Container -->
-        <LinearLayout
-            android:id="@+id/layout_edit_mode"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <com.google.android.material.textfield.TextInputLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Full Name"
-                android:layout_marginBottom="12dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_name"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <!-- View Mode Container -->
+                <LinearLayout
+                    android:id="@+id/layout_view_mode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPersonName"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:orientation="vertical"
+                    android:visibility="visible">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Department"
-                android:layout_marginBottom="12dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_department"
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Full Name" android:textColor="@color/outline" android:textSize="12sp" android:textAllCaps="true" android:letterSpacing="0.05"/>
+                    <TextView android:id="@+id/tv_name" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="John Doe" android:textColor="@color/black" android:textSize="18sp" android:textStyle="bold" android:layout_marginBottom="16dp" android:paddingTop="4dp"/>
+
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:baselineAligned="false">
+                        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Department" android:textColor="@color/outline" android:textSize="12sp" android:textAllCaps="true"/>
+                            <TextView android:id="@+id/tv_department" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Engineering" android:textColor="@color/black" android:textSize="16sp" android:layout_marginBottom="16dp" android:paddingTop="4dp"/>
+                        </LinearLayout>
+                        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Position" android:textColor="@color/outline" android:textSize="12sp" android:textAllCaps="true"/>
+                            <TextView android:id="@+id/tv_position" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Developer" android:textColor="@color/black" android:textSize="16sp" android:layout_marginBottom="16dp" android:paddingTop="4dp"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Salary" android:textColor="@color/outline" android:textSize="12sp" android:textAllCaps="true"/>
+                    <TextView android:id="@+id/tv_salary" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="50,000" android:textColor="@color/primary" android:textSize="18sp" android:textStyle="bold" android:layout_marginBottom="16dp" android:paddingTop="4dp"/>
+
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Email" android:textColor="@color/outline" android:textSize="12sp" android:textAllCaps="true"/>
+                    <TextView android:id="@+id/tv_email" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="john@example.com" android:textColor="@color/black" android:textSize="16sp" android:layout_marginBottom="16dp" android:paddingTop="4dp"/>
+
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Phone" android:textColor="@color/outline" android:textSize="12sp" android:textAllCaps="true"/>
+                    <TextView android:id="@+id/tv_phone" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="123456789" android:textColor="@color/black" android:textSize="16sp" android:layout_marginBottom="4dp" android:paddingTop="4dp"/>
+                </LinearLayout>
+
+                <!-- Edit Mode Container -->
+                <LinearLayout
+                    android:id="@+id/layout_edit_mode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Position"
-                android:layout_marginBottom="12dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_position"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Full Name"
+                        android:layout_marginBottom="12dp"
+                        app:boxCornerRadiusTopStart="12dp"
+                        app:boxCornerRadiusTopEnd="12dp"
+                        app:boxCornerRadiusBottomStart="12dp"
+                        app:boxCornerRadiusBottomEnd="12dp"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPersonName"
+                            android:imeOptions="actionNext"
+                            android:singleLine="true"/>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Salary"
-                android:layout_marginBottom="12dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_salary"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Department"
+                        android:layout_marginBottom="12dp"
+                        app:boxCornerRadiusTopStart="12dp"
+                        app:boxCornerRadiusTopEnd="12dp"
+                        app:boxCornerRadiusBottomStart="12dp"
+                        app:boxCornerRadiusBottomEnd="12dp"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_department"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            android:imeOptions="actionNext"
+                            android:singleLine="true"/>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Email"
-                android:layout_marginBottom="12dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_email"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Position"
+                        android:layout_marginBottom="12dp"
+                        app:boxCornerRadiusTopStart="12dp"
+                        app:boxCornerRadiusTopEnd="12dp"
+                        app:boxCornerRadiusBottomStart="12dp"
+                        app:boxCornerRadiusBottomEnd="12dp"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_position"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            android:imeOptions="actionNext"
+                            android:singleLine="true"/>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Phone"
-                android:layout_marginBottom="24dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_phone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="phone"/>
-            </com.google.android.material.textfield.TextInputLayout>
-        </LinearLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Salary"
+                        android:layout_marginBottom="12dp"
+                        app:boxCornerRadiusTopStart="12dp"
+                        app:boxCornerRadiusTopEnd="12dp"
+                        app:boxCornerRadiusBottomStart="12dp"
+                        app:boxCornerRadiusBottomEnd="12dp"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_salary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal"
+                            android:imeOptions="actionNext"
+                            android:singleLine="true"/>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Email"
+                        android:layout_marginBottom="12dp"
+                        app:boxCornerRadiusTopStart="12dp"
+                        app:boxCornerRadiusTopEnd="12dp"
+                        app:boxCornerRadiusBottomStart="12dp"
+                        app:boxCornerRadiusBottomEnd="12dp"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textEmailAddress"
+                            android:imeOptions="actionNext"
+                            android:singleLine="true"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Phone"
+                        android:layout_marginBottom="12dp"
+                        app:boxCornerRadiusTopStart="12dp"
+                        app:boxCornerRadiusTopEnd="12dp"
+                        app:boxCornerRadiusBottomStart="12dp"
+                        app:boxCornerRadiusBottomEnd="12dp"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_phone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="phone"
+                            android:imeOptions="actionDone"
+                            android:singleLine="true"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_edit"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:text="Edit Employee"
+            android:layout_height="56dp"
+            android:text="Edit Profile"
             android:layout_marginBottom="12dp"
-            android:backgroundTint="@color/colorPrimary"/>
+            app:cornerRadius="16dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:backgroundTint="@color/primary"/>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_save"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:text="Save"
+            android:layout_height="56dp"
+            android:text="Save Changes"
             android:layout_marginBottom="12dp"
             android:visibility="gone"
+            app:cornerRadius="16dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
             android:backgroundTint="#4CAF50"/>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_delete"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:text="Cancel"
-            android:backgroundTint="#F44336"/>
+            android:layout_height="56dp"
+            android:text="Delete Employee"
+            app:cornerRadius="16dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:backgroundTint="#79747E"
+            android:textColor="@color/white"/>
 
     </LinearLayout>
 </ScrollView>

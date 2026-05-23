@@ -85,14 +85,15 @@ public class EmployeeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         if (isGridLayout) {
             stepViewHolder.mTxtNameTitle.setVisibility(View.GONE);
-            stepViewHolder.mTxtPartTitle.setVisibility(View.GONE);
-            stepViewHolder.mTxtPosTitle.setVisibility(View.GONE);
+            stepViewHolder.mTxtPartTitle.setVisibility(View.VISIBLE); 
+            stepViewHolder.mTxtPosTitle.setVisibility(View.VISIBLE);
             stepViewHolder.mImgDetail.setVisibility(View.GONE);
             
-            // Centering text for grid
-            stepViewHolder.mTxtName.setGravity(android.view.Gravity.CENTER);
-            stepViewHolder.mTxtPart.setGravity(android.view.Gravity.CENTER);
-            stepViewHolder.mTxtPos.setGravity(android.view.Gravity.CENTER);
+            stepViewHolder.mTxtName.setGravity(android.view.Gravity.START);
+            stepViewHolder.mTxtPart.setGravity(android.view.Gravity.START);
+            stepViewHolder.mTxtPos.setGravity(android.view.Gravity.START);
+            
+            stepViewHolder.mTxtName.setTextSize(15);
         } else {
             stepViewHolder.mTxtNameTitle.setVisibility(View.VISIBLE);
             stepViewHolder.mTxtPartTitle.setVisibility(View.VISIBLE);
@@ -102,6 +103,8 @@ public class EmployeeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             stepViewHolder.mTxtName.setGravity(android.view.Gravity.START);
             stepViewHolder.mTxtPart.setGravity(android.view.Gravity.START);
             stepViewHolder.mTxtPos.setGravity(android.view.Gravity.START);
+            
+            stepViewHolder.mTxtName.setTextSize(16);
         }
 
         stepViewHolder.mLayoutItem.setOnClickListener(v -> {

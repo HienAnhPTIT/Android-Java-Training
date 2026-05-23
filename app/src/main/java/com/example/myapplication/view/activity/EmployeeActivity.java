@@ -38,6 +38,7 @@ public class EmployeeActivity extends AppCompatActivity {
     private TextView mTextDialog;
     private boolean isGridLayout = false;
     private android.widget.ImageButton btnToggleLayout;
+    private View titleBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,7 @@ public class EmployeeActivity extends AppCompatActivity {
         mSideBar = findViewById(R.id.sidrbar);
         mTextDialog = findViewById(R.id.dialog);
         btnToggleLayout = findViewById(R.id.btn_toggle_layout);
+        titleBar = findViewById(R.id.title_bar);
 
         btnToggleLayout.setOnClickListener(v -> toggleLayout());
 
@@ -66,10 +68,11 @@ public class EmployeeActivity extends AppCompatActivity {
         });
 
         getSupportFragmentManager().addOnBackStackChangedListener(() -> {
-
             boolean isRoot = getSupportFragmentManager().getBackStackEntryCount() == 0;
-
             mFabAdd.setVisibility(isRoot ? View.VISIBLE : View.GONE);
+            titleBar.setVisibility(isRoot ? View.VISIBLE : View.GONE);
+            mRecyclerView.setVisibility(isRoot ? View.VISIBLE : View.GONE);
+            mSideBar.setVisibility(isRoot ? View.VISIBLE : View.GONE);
         });
 
         mFabAdd.setOnClickListener(v -> {
@@ -164,7 +167,7 @@ public class EmployeeActivity extends AppCompatActivity {
 
     private void updateLayoutManager() {
         if (isGridLayout) {
-            mRecyclerView.setLayoutManager(new androidx.recyclerview.widget.GridLayoutManager(this, 3));
+            mRecyclerView.setLayoutManager(new androidx.recyclerview.widget.GridLayoutManager(this, 2));
         } else {
             mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         }

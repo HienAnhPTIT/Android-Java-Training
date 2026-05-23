@@ -13,7 +13,7 @@ import java.util.List;
 
 @Dao
 public interface EmployeeDao {
-    @Query("SELECT * FROM employees order by name ASC")
+    @Query("SELECT * FROM employees ORDER BY name COLLATE NOCASE ASC")
     LiveData<List<EmployeeEntity>> getAllLive();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

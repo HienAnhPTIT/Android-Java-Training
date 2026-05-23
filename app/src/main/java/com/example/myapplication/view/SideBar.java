@@ -12,9 +12,9 @@ import android.widget.TextView;
 
 public class SideBar extends View {
     private OnTouchingLetterChangedListener onTouchingLetterChangedListener;
-    public static String[] b = {"A", "B", "C", "D", "E", "F", "G", "H", "I",
+    public static String[] b = {"#", "A", "B", "C", "D", "E", "F", "G", "H", "I",
             "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V",
-            "W", "X", "Y", "Z", "#"};
+            "W", "X", "Y", "Z"};
     private int choose = -1;
     private final Paint paint = new Paint();
     private TextView mTextDialog;
@@ -46,13 +46,13 @@ public class SideBar extends View {
         for (int i = 0; i < b.length; i++) {
             paint.setAntiAlias(true);
             paint.setTypeface(Typeface.DEFAULT_BOLD);
-            paint.setColor(Color.BLACK); // Use Black or dark grey for better visibility on light background
+            paint.setColor(Color.BLACK);
             
             float textSize;
             int alpha;
             
             if (choose != -1) {
-                paint.setColor(Color.parseColor("#3399ff")); // Blue when selected
+                paint.setColor(Color.parseColor("#6750A4")); // Use primary color
                 int distance = Math.abs(i - choose);
                 switch (distance) {
                     case 0:
@@ -73,8 +73,9 @@ public class SideBar extends View {
                         break;
                 }
             } else {
-                textSize = 12f * density;
-                alpha = 150; // Semi-transparent
+                textSize = 11f * density;
+                alpha = 130;
+                paint.setColor(Color.parseColor("#79747E")); // Use outline color
             }
 
             paint.setTextSize(textSize);
