@@ -41,24 +41,58 @@
             app:tint="@color/primary" />
     </RelativeLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@color/color_bg"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/sidrbar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_bar" />
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/search_container"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="6dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="0dp"
+        app:strokeWidth="1dp"
+        app:strokeColor="@color/surface_variant"
+        app:layout_constraintTop_toBottomOf="@+id/title_bar"
+        app:layout_constraintBottom_toTopOf="@+id/list_container">
 
-    <com.example.myapplication.view.SideBar
-        android:id="@+id/sidrbar"
-        android:layout_width="32dp"
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            app:iconifiedByDefault="false"
+            app:queryHint="Search employees..."
+            app:queryBackground="@android:color/transparent" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/list_container"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/surface_variant"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_bar" />
+        app:layout_constraintTop_toBottomOf="@+id/search_container">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/color_bg"
+            android:paddingTop="6dp"
+            android:clipToPadding="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/sidrbar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.example.myapplication.view.SideBar
+            android:id="@+id/sidrbar"
+            android:layout_width="32dp"
+            android:layout_height="0dp"
+            android:background="@color/surface_variant"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/dialog"

@@ -39,6 +39,7 @@ public class EmployeeActivity extends AppCompatActivity {
     private boolean isGridLayout = false;
     private android.widget.ImageButton btnToggleLayout;
     private View titleBar;
+    private androidx.appcompat.widget.SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +53,28 @@ public class EmployeeActivity extends AppCompatActivity {
         mTextDialog = findViewById(R.id.dialog);
         btnToggleLayout = findViewById(R.id.btn_toggle_layout);
         titleBar = findViewById(R.id.title_bar);
+        searchView = findViewById(R.id.search_view);
+        final View searchContainer = findViewById(R.id.search_container);
+        final View listContainer = findViewById(R.id.list_container);
 
         btnToggleLayout.setOnClickListener(v -> toggleLayout());
 
         setAdapter();
+
+        searchView.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (mAdapter != null) {
+                    mAdapter.getFilter().filter(newText);
+                }
+                return false;
+            }
+        });
 
         mSideBar.setTextView(mTextDialog);
         mSideBar.setOnTouchingLetterChangedListener(s -> {
@@ -71,8 +90,8 @@ public class EmployeeActivity extends AppCompatActivity {
             boolean isRoot = getSupportFragmentManager().getBackStackEntryCount() == 0;
             mFabAdd.setVisibility(isRoot ? View.VISIBLE : View.GONE);
             titleBar.setVisibility(isRoot ? View.VISIBLE : View.GONE);
-            mRecyclerView.setVisibility(isRoot ? View.VISIBLE : View.GONE);
-            mSideBar.setVisibility(isRoot ? View.VISIBLE : View.GONE);
+            searchContainer.setVisibility(isRoot ? View.VISIBLE : View.GONE);
+            listContainer.setVisibility(isRoot ? View.VISIBLE : View.GONE);
         });
 
         mFabAdd.setOnClickListener(v -> {
