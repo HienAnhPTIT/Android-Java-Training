@@ -41,7 +41,14 @@ public class DetailActivity extends AppCompatActivity {
 
         btnEdit.setOnClickListener(v -> toggleEditMode(true));
         btnSave.setOnClickListener(v -> updateEmployee());
-        btnDelete.setOnClickListener(v -> confirmDelete());
+        btnDelete.setOnClickListener(v -> {
+            if (layoutEditMode.getVisibility() == View.VISIBLE) {
+                toggleEditMode(false);
+                fillData();
+            } else {
+                confirmDelete();
+            }
+        });
 
         mViewModel.getError().observe(this, error -> {
             if (error != null) Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
@@ -103,11 +110,17 @@ public class DetailActivity extends AppCompatActivity {
             layoutEditMode.setVisibility(View.VISIBLE);
             btnEdit.setVisibility(View.GONE);
             btnSave.setVisibility(View.VISIBLE);
+            btnDelete.setText("Cancel");
+            btnDelete.setBackgroundTintList(android.content.res.ColorStateList.valueOf(android.graphics.Color.parseColor("#79747E")));
+            btnDelete.setTextColor(android.graphics.Color.WHITE);
         } else {
             layoutViewMode.setVisibility(View.VISIBLE);
             layoutEditMode.setVisibility(View.GONE);
             btnEdit.setVisibility(View.VISIBLE);
             btnSave.setVisibility(View.GONE);
+            btnDelete.setText("Delete Employee");
+            btnDelete.setBackgroundTintList(android.content.res.ColorStateList.valueOf(android.graphics.Color.parseColor("#79747E")));
+            btnDelete.setTextColor(android.graphics.Color.WHITE);
         }
     }
 
