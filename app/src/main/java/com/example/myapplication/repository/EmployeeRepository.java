@@ -34,11 +34,23 @@ public class EmployeeRepository {
         mContext = context;
     }
 
+    private boolean isGuest() {
+        return mContext.getSharedPreferences("AppPref", Context.MODE_PRIVATE).getBoolean("is_guest", false);
+    }
+
     public LiveData<List<EmployeeEntity>> getAllLive() {
         return dao.getAllLive();
     }
 
     public void addEmployee(Employee employee, SyncCallback callback) {
+        if (isGuest()) {
+            mExecutor.execute(() -> {
+                dao.insertOrUpdate(EmployeeMapper.toEntity(employee));
+                mHandler.post(callback::onSuccess);
+            });
+            return;
+        }
+
         RetrofitClient.getInstance(mContext).getService().addEmployee(employee)
                 .enqueue(new Callback<Employee>() {
                     @Override
@@ -65,6 +77,14 @@ public class EmployeeRepository {
     }
 
     public void updateEmployee(Employee employee, SyncCallback callback) {
+        if (isGuest()) {
+            mExecutor.execute(() -> {
+                dao.insertOrUpdate(EmployeeMapper.toEntity(employee));
+                mHandler.post(callback::onSuccess);
+            });
+            return;
+        }
+
         RetrofitClient.getInstance(mContext).getService().updateEmployee(employee.getId(), employee)
                 .enqueue(new Callback<Employee>() {
                     @Override
@@ -91,6 +111,14 @@ public class EmployeeRepository {
     }
 
     public void deleteEmployee(int id, SyncCallback callback) {
+        if (isGuest()) {
+            mExecutor.execute(() -> {
+                dao.deleteById(id);
+                mHandler.post(callback::onSuccess);
+            });
+            return;
+        }
+
         RetrofitClient.getInstance(mContext).getService().deleteEmployee(id)
                 .enqueue(new Callback<Void>() {
                     @Override
@@ -122,6 +150,14 @@ public class EmployeeRepository {
     }
 
     public void getAllEmp(SyncCallback callback) {
+        if (isGuest()) {
+            mExecutor.execute(() -> {
+                dao.deleteAll(); // Initial empty list for guest
+                mHandler.post(callback::onSuccess);
+            });
+            return;
+        }
+
         Log.d("EmployeeRepo", "Fetching employees from API at /users...");
         RetrofitClient.getInstance(mContext).getService().getEmployees()
                 .enqueue(new Callback<List<Employee>>() {

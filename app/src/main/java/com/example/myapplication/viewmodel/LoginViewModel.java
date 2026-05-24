@@ -1,6 +1,8 @@
 package com.example.myapplication.viewmodel;
 
 import android.app.Application;
+import android.content.Context;
+import android.content.SharedPreferences;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -31,11 +33,13 @@ public class LoginViewModel extends AndroidViewModel {
     public LiveData<Boolean> getIsLoginSuccess(){
         return isLoginSuccess;
     }
+    
     public void checkLogin(String user, String pw){
         isLoading.setValue(true);
         repository.checkLogin(user, pw, new AuthRepository.SyncCallback<LoginResponse>(){
             @Override
             public void onSuccess(LoginResponse response) {
+                saveGuestMode(false);
                 isLoading.postValue(false);
                 isLoginSuccess.postValue(true);
             }
@@ -46,5 +50,18 @@ public class LoginViewModel extends AndroidViewModel {
                 errorMessage.postValue(message);
             }
         });
+    }
+
+    public void guestLogin() {
+        saveGuestMode(true);
+        isLoginSuccess.setValue(true);
+    }
+
+    private void saveGuestMode(boolean isGuest) {
+        SharedPreferences pref = getApplication().getSharedPreferences("AppPref", Context.MODE_PRIVATE);
+        pref.edit().putBoolean("is_guest", isGuest).apply();
+        if (isGuest) {
+            pref.edit().putString("access_token", "").apply();
+        }
     }
 }

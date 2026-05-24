@@ -46,6 +46,13 @@ public class EmployeeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
+    public Employee getItem(int pos) {
+        if (pos > -1 && pos < mList.size()) {
+            return mList.get(pos);
+        }
+        return null;
+    }
+
     public void removeItem(int pos){
         if (pos > -1 && pos < mList.size()){
             Employee emp = mList.get(pos);
